@@ -1,32 +1,29 @@
 import pytest
-import requests
-from config import Config
+from api.client import APIClient
+from config.config import Config
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def base_url():
     return Config.HOST
 
 
+@pytest.fixture(scope="session")
+def client(base_url):
+    return APIClient(base_url)
+
+
 @pytest.fixture
-def entity(base_url):
+def entity(client):
     payload = {
-        "addition": {"additional_info": "Test info", "additional_number": 121325},
-        "important_numbers": [12, 84, 586],
-        "title": "Test entity for API testing",
+        "addition": {"additional_info": "Fixture", "additional_number": 123},
+        "important_numbers": [10, 20],
+        "title": "Тестовая сущность",
         "verified": True,
     }
-
-    response = requests.post(
-        f"{base_url}{Config.ENDPOINTS['create']}", json=payload
-    )
-    assert response.status_code == 200
+    response = client.post(Config.ENDPOINTS["create"], json=payload)
     entity_id = int(response.text)
 
     yield entity_id, payload
 
-    # Удаляем сущность после теста
-    del_response = requests.delete(
-        f"{base_url}{Config.ENDPOINTS['delete'].format(id=entity_id)}"
-    )
-    assert del_response.status_code in (200, 204)
+    client.delete(Config.ENDPOINTS["delete"].format(id=entity_id))

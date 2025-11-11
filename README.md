@@ -1,7 +1,8 @@
 # API Autotests (Python + Pytest + Allure)
 
-Набор автотестов для проверки REST API приложения по адресу  
+Набор автотестов для проверки [REST API приложения](https://github.com/bondarenkokate73/simbirsoft_sdet_project) по адресу  
 **`http://localhost:8080`**
+
 
 Покрыты все основные эндпоинты (только позитивные кейсы):
 - `POST /api/create` — создание сущности  
@@ -25,7 +26,7 @@
 
 ## ⚙️ Установка и настройка
 
-1. Клонируй репозиторий:
+1. Клонируй репозиторий и перейди в папку с репозиторием:
    ```bash
    git clone https://github.com/denkho/simbirsoft_sdet_project_api.git
    cd simbirsoft_sdet_project_api.git
@@ -40,3 +41,13 @@
 http://localhost:8080
 ```
 
+4. Запусти тесты
+
+```
+pytest -n auto --alluredir=reports/allure-results
+```
+
+5. Просмотри отчеты 
+```
+allure serve reports/allure-results
+```
