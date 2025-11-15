@@ -1,7 +1,7 @@
 class Payloads:
     SAMPLE_ENTITY = {
         "addition": {"additional_info": "Test entity", "additional_number": 1321},
-        "importan_numbers": [13, 31, 66, 131],
+        "important_numbers": [13, 31, 66, 131],
         "title": "Entity Title",
         "verified": True,
     }

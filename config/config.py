@@ -1,3 +1,6 @@
+import os
+
+
 class Config:
     HOST = "http://localhost:8080"
 
@@ -10,3 +13,8 @@ class Config:
     }
 
     TIMEOUT = 10
+
+    LOG_DIR = "logs"
+    LOG_FILE = "api_client.log"
+    LOG_PATH = os.path.join(LOG_DIR, LOG_FILE)
+    os.makedirs(LOG_DIR, exist_ok=True) 
