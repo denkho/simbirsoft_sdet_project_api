@@ -1,0 +1,5 @@
+requests==2.32
+pydantic==2.12
+pytest==9.0
+pytest-xdist==3.8
+allure-pytest==2.15
